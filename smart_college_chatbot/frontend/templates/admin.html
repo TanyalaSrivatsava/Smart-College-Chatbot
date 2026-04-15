@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel — SR University Chatbot</title>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0e0e1a; --bg2: #16162a; --bg3: #1e1e38;
+            --accent: #5b4fcf; --gold: #d4a853;
+            --text: #e8e4f0; --text2: #a0a0c8; --text3: #6060a0;
+            --border: rgba(255,255,255,0.08);
+            --font-d: 'Syne', sans-serif; --font-b: 'DM Sans', sans-serif;
+            --green: #22c55e; --red: #ef4444; --yellow: #f59e0b;
+            --radius: 10px;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: var(--font-b); background: var(--bg); color: var(--text); min-height: 100vh; }
+        
+        /* Layout */
+        .admin-layout { display: flex; min-height: 100vh; }
+        .admin-sidebar {
+            width: 220px; min-width: 220px;
+            background: var(--bg2); border-right: 1px solid var(--border);
+            display: flex; flex-direction: column; padding: 24px 0;
+        }
+        .admin-logo {
+            padding: 0 20px 24px; border-bottom: 1px solid var(--border);
+            font-family: var(--font-d); font-size: 1.1rem; font-weight: 700;
+            color: var(--gold); margin-bottom: 16px;
+        }
+        .admin-logo span { display: block; font-size: 0.7rem; color: var(--text3); font-weight: 400; font-family: var(--font-b); margin-top: 2px; }
+        .nav-item {
+            display: flex; align-items: center; gap: 10px;
+            padding: 10px 20px; color: var(--text2); font-size: 0.88rem;
+            cursor: pointer; border-radius: 0; transition: all 0.2s;
+            border-left: 3px solid transparent;
+        }
+        .nav-item:hover { color: var(--text); background: rgba(255,255,255,0.04); }
+        .nav-item.active { color: var(--accent); background: rgba(91,79,207,0.1); border-left-color: var(--accent); }
+        .nav-icon { font-size: 1rem; }
+        
+        .admin-main { flex: 1; display: flex; flex-direction: column; overflow: hidden; }
+        .admin-topbar {
+            height: 60px; background: var(--bg2); border-bottom: 1px solid var(--border);
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 0 28px; flex-shrink: 0;
+        }
+        .topbar-title { font-family: var(--font-d); font-size: 1.1rem; font-weight: 700; }
+        .topbar-actions { display: flex; gap: 8px; align-items: center; }
+        
+        .admin-content { flex: 1; overflow-y: auto; padding: 28px; }
+        
+        /* Panels */
+        .panel { display: none; }
+        .panel.active { display: block; }
+        
+        /* Cards */
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 16px; margin-bottom: 28px; }
+        .stat-card {
+            background: var(--bg3); border: 1px solid var(--border);
+            border-radius: var(--radius); padding: 20px;
+        }
+        .stat-card .label { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text3); margin-bottom: 8px; }
+        .stat-card .value { font-family: var(--font-d); font-size: 2rem; font-weight: 700; }
+        .stat-card .sub { font-size: 0.75rem; color: var(--text3); margin-top: 4px; }
+        .stat-card .green { color: var(--green); }
+        .stat-card .gold { color: var(--gold); }
+        .stat-card .accent { color: var(--accent); }
+        
+        /* Table */
+        .table-wrap {
+            background: var(--bg3); border: 1px solid var(--border);
+            border-radius: var(--radius); overflow: hidden;
+        }
+        .table-header {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 16px 20px; border-bottom: 1px solid var(--border);
+        }
+        .table-title { font-family: var(--font-d); font-size: 0.95rem; font-weight: 700; }
+        
+        table { width: 100%; border-collapse: collapse; }
+        th { padding: 12px 16px; text-align: left; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text3); font-weight: 600; border-bottom: 1px solid var(--border); }
+        td { padding: 12px 16px; font-size: 0.85rem; color: var(--text2); border-bottom: 1px solid rgba(255,255,255,0.04); vertical-align: top; max-width: 300px; word-break: break-word; }
+        tr:last-child td { border-bottom: none; }
+        tr:hover td { background: rgba(255,255,255,0.02); }
+        
+        /* Badges */
+        .badge {
+            display: inline-block; padding: 2px 8px; border-radius: 100px;
+            font-size: 0.7rem; font-weight: 600; text-transform: uppercase;
+        }
+        .badge-blue { background: rgba(91,79,207,0.2); color: #a78bfa; }
+        .badge-green { background: rgba(34,197,94,0.15); color: var(--green); }
+        .badge-yellow { background: rgba(245,158,11,0.15); color: var(--yellow); }
+        .badge-red { background: rgba(239,68,68,0.15); color: var(--red); }
+        
+        /* Buttons */
+        .btn {
+            padding: 8px 16px; border-radius: 8px; border: none;
+            font-family: var(--font-b); font-size: 0.82rem; cursor: pointer;
+            transition: all 0.2s; font-weight: 500;
+        }
+        .btn-primary { background: var(--accent); color: white; }
+        .btn-primary:hover { background: #6d62d4; }
+        .btn-danger { background: rgba(239,68,68,0.15); color: var(--red); border: 1px solid rgba(239,68,68,0.3); }
+        .btn-danger:hover { background: rgba(239,68,68,0.25); }
+        .btn-outline { background: transparent; color: var(--text2); border: 1px solid var(--border); }
+        .btn-outline:hover { background: rgba(255,255,255,0.06); color: var(--text); }
+        .btn-sm { padding: 5px 10px; font-size: 0.75rem; }
+        .btn-icon { width: 30px; height: 30px; padding: 0; display: inline-flex; align-items: center; justify-content: center; }
+        
+        /* Form */
+        .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+        .form-group { display: flex; flex-direction: column; gap: 6px; }
+        .form-group.full { grid-column: 1 / -1; }
+        label { font-size: 0.78rem; color: var(--text3); text-transform: uppercase; letter-spacing: 0.06em; }
+        input, textarea, select {
+            background: var(--bg2); border: 1px solid var(--border);
+            border-radius: 8px; padding: 10px 14px; color: var(--text);
+            font-family: var(--font-b); font-size: 0.88rem;
+            outline: none; transition: border-color 0.2s;
+            width: 100%;
+        }
+        input:focus, textarea:focus, select:focus { border-color: var(--accent); }
+        textarea { resize: vertical; min-height: 90px; }
+        select option { background: var(--bg2); }
+        
+        .modal-overlay {
+            display: none; position: fixed; inset: 0; z-index: 100;
+            background: rgba(0,0,0,0.7); backdrop-filter: blur(4px);
+            align-items: center; justify-content: center;
+        }
+        .modal-overlay.open { display: flex; }
+        .modal {
+            background: var(--bg2); border: 1px solid var(--border);
+            border-radius: 16px; padding: 28px; width: 560px; max-width: 95%;
+            max-height: 90vh; overflow-y: auto;
+        }
+        .modal-title { font-family: var(--font-d); font-size: 1.1rem; margin-bottom: 20px; }
+        .modal-actions { display: flex; gap: 8px; justify-content: flex-end; margin-top: 20px; }
+        
+        .search-bar {
+            display: flex; gap: 8px;
+        }
+        .search-bar input { max-width: 280px; }
+        
+        .alert {
+            padding: 12px 16px; border-radius: 8px; margin-bottom: 16px;
+            font-size: 0.85rem;
+        }
+        .alert-success { background: rgba(34,197,94,0.1); border: 1px solid rgba(34,197,94,0.3); color: var(--green); }
+        .alert-error { background: rgba(239,68,68,0.1); border: 1px solid rgba(239,68,68,0.3); color: var(--red); }
+        
+        .logout-btn {
+            margin-top: auto; padding: 10px 20px; color: var(--red);
+            background: none; border: none; cursor: pointer; font-size: 0.88rem;
+            font-family: var(--font-b); text-align: left; transition: 0.2s;
+            display: flex; align-items: center; gap: 8px;
+        }
+        .logout-btn:hover { color: #fc8181; }
+        
+        #alertBox { margin-bottom: 16px; }
+        .loading-state { color: var(--text3); font-size: 0.85rem; padding: 20px; text-align: center; }
+        
+        @media (max-width: 768px) {
+            .admin-sidebar { display: none; }
+            .form-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+<div class="admin-layout">
+
+    <!-- Sidebar -->
+    <div class="admin-sidebar">
+        <div class="admin-logo">⚙ Admin Panel<span>SR University Chatbot</span></div>
+        <div class="nav-item active" onclick="showPanel('dashboard')">
+            <span class="nav-icon">📊</span> Dashboard
+        </div>
+        <div class="nav-item" onclick="showPanel('faqs')">
+            <span class="nav-icon">❓</span> Manage FAQs
+        </div>
+        <div class="nav-item" onclick="showPanel('history')">
+            <span class="nav-icon">💬</span> Chat History
+        </div>
+        <div class="nav-item" onclick="showPanel('model')">
+            <span class="nav-icon">🧠</span> NLP Model
+        </div>
+        <a href="/" style="text-decoration:none;" class="nav-item" style="margin-top:auto">
+            <span class="nav-icon">🏠</span> Back to Chat
+        </a>
+        <a href="/admin/logout" style="text-decoration:none;" class="logout-btn">
+            🚪 Logout
+        </a>
+    </div>
+
+    <!-- Main -->
+    <div class="admin-main">
+        <div class="admin-topbar">
+            <div class="topbar-title" id="panelTitle">Dashboard</div>
+            <div class="topbar-actions">
+                <span style="font-size:0.8rem;color:var(--text3)">Logged in as: <strong style="color:var(--text2)">{{ username }}</strong></span>
+            </div>
+        </div>
+
+        <div class="admin-content">
+            <div id="alertBox"></div>
+
+            <!-- Dashboard Panel -->
+            <div class="panel active" id="panel-dashboard">
+                <div class="stats-grid" id="statsGrid">
+                    <div class="stat-card"><div class="label">Total Messages</div><div class="value accent" id="stat-total">—</div><div class="sub">All time</div></div>
+                    <div class="stat-card"><div class="label">Today</div><div class="value green" id="stat-today">—</div><div class="sub">Messages today</div></div>
+                    <div class="stat-card"><div class="label">Avg Confidence</div><div class="value gold" id="stat-conf">—</div><div class="sub">NLP match score</div></div>
+                    <div class="stat-card"><div class="label">Avg Rating</div><div class="value accent" id="stat-rating">—</div><div class="sub">User feedback</div></div>
+                </div>
+
+                <div class="table-wrap">
+                    <div class="table-header">
+                        <div class="table-title">🔥 Top Intents</div>
+                    </div>
+                    <table>
+                        <thead><tr><th>Intent</th><th>Count</th><th>Popularity</th></tr></thead>
+                        <tbody id="topIntentsTable"><tr><td colspan="3" class="loading-state">Loading...</td></tr></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- FAQs Panel -->
+            <div class="panel" id="panel-faqs">
+                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;gap:12px;flex-wrap:wrap;">
+                    <div class="search-bar">
+                        <input type="text" id="faqSearch" placeholder="Search FAQs..." oninput="searchFAQs()">
+                        <select id="categoryFilter" onchange="loadFAQs()">
+                            <option value="">All Categories</option>
+                            <option value="admissions">Admissions</option>
+                            <option value="fees">Fees</option>
+                            <option value="courses">Courses</option>
+                            <option value="exams">Exams</option>
+                            <option value="placements">Placements</option>
+                            <option value="hostel">Hostel</option>
+                            <option value="general">General</option>
+                        </select>
+                    </div>
+                    <button class="btn btn-primary" onclick="openAddFAQModal()">+ Add FAQ</button>
+                </div>
+                <div class="table-wrap">
+                    <table>
+                        <thead><tr><th>#</th><th>Category</th><th>Question</th><th>Answer (preview)</th><th>Actions</th></tr></thead>
+                        <tbody id="faqsTable"><tr><td colspan="5" class="loading-state">Loading...</td></tr></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- History Panel -->
+            <div class="panel" id="panel-history">
+                <div class="table-wrap">
+                    <div class="table-header">
+                        <div class="table-title">💬 Recent Chat History</div>
+                        <button class="btn btn-outline btn-sm" onclick="loadHistory()">↻ Refresh</button>
+                    </div>
+                    <table>
+                        <thead><tr><th>Time</th><th>User Message</th><th>Bot Response</th><th>Intent</th><th>Confidence</th></tr></thead>
+                        <tbody id="historyTable"><tr><td colspan="5" class="loading-state">Loading...</td></tr></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Model Panel -->
+            <div class="panel" id="panel-model">
+                <div style="background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius);padding:24px;margin-bottom:20px">
+                    <div style="font-family:var(--font-d);font-size:1rem;margin-bottom:16px">🧠 NLP Model Information</div>
+                    <div id="modelInfo" style="color:var(--text2);font-size:0.88rem;line-height:1.8">Loading...</div>
+                    <br>
+                    <button class="btn btn-primary" onclick="retrainModel()">🔄 Retrain Model</button>
+                    <span id="retrainStatus" style="margin-left:12px;font-size:0.8rem;color:var(--text3)"></span>
+                </div>
+                <div style="background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius);padding:24px">
+                    <div style="font-family:var(--font-d);font-size:1rem;margin-bottom:12px">📈 Improvement Suggestions</div>
+                    <ul style="color:var(--text2);font-size:0.85rem;line-height:2;padding-left:20px">
+                        <li>Add more diverse patterns to intents with low confidence scores</li>
+                        <li>Use transformer-based models (BERT/DistilBERT) for better accuracy</li>
+                        <li>Implement conversation context tracking for multi-turn dialogues</li>
+                        <li>Add entity extraction (dates, fees, names) using spaCy NER</li>
+                        <li>Collect real user queries to expand the training dataset</li>
+                        <li>Consider fine-tuning on college-specific corpus for domain adaptation</li>
+                        <li>Add spell correction and query expansion for better recall</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Add/Edit FAQ Modal -->
+<div class="modal-overlay" id="faqModal">
+    <div class="modal">
+        <div class="modal-title" id="modalTitle">Add New FAQ</div>
+        <input type="hidden" id="editFaqId">
+        <div class="form-grid">
+            <div class="form-group">
+                <label>Category</label>
+                <select id="faqCategory">
+                    <option value="admissions">Admissions</option>
+                    <option value="fees">Fees</option>
+                    <option value="courses">Courses</option>
+                    <option value="exams">Exams</option>
+                    <option value="placements">Placements</option>
+                    <option value="hostel">Hostel</option>
+                    <option value="general">General</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Keywords (comma separated)</label>
+                <input type="text" id="faqKeywords" placeholder="e.g. fee, payment, cost">
+            </div>
+            <div class="form-group full">
+                <label>Question</label>
+                <input type="text" id="faqQuestion" placeholder="Enter the question">
+            </div>
+            <div class="form-group full">
+                <label>Answer</label>
+                <textarea id="faqAnswer" rows="5" placeholder="Enter the detailed answer"></textarea>
+            </div>
+        </div>
+        <div class="modal-actions">
+            <button class="btn btn-outline" onclick="closeFAQModal()">Cancel</button>
+            <button class="btn btn-primary" onclick="saveFAQ()">Save FAQ</button>
+        </div>
+    </div>
+</div>
+
+<script>
+let currentPanel = 'dashboard';
+let allFaqs = [];
+
+// Navigation
+function showPanel(name) {
+    document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+    document.getElementById('panel-' + name).classList.add('active');
+    document.querySelectorAll('.nav-item')[['dashboard','faqs','history','model'].indexOf(name)].classList.add('active');
+    document.getElementById('panelTitle').textContent = 
+        {dashboard:'Dashboard',faqs:'Manage FAQs',history:'Chat History',model:'NLP Model'}[name];
+    currentPanel = name;
+    if (name === 'dashboard') loadStats();
+    if (name === 'faqs') loadFAQs();
+    if (name === 'history') loadHistory();
+    if (name === 'model') loadModelInfo();
+}
+
+// Alert
+function showAlert(msg, type='success') {
+    const box = document.getElementById('alertBox');
+    box.innerHTML = `<div class="alert alert-${type}">${msg}</div>`;
+    setTimeout(() => box.innerHTML = '', 4000);
+}
+
+// API helper
+async function api(url, options={}) {
+    const r = await fetch(url, {
+        headers: {'Content-Type':'application/json'},
+        ...options
+    });
+    if (r.status === 401) { window.location = '/admin/login'; return null; }
+    return r.json();
+}
+
+// Dashboard
+async function loadStats() {
+    const data = await api('/admin/api/stats');
+    if (!data) return;
+    document.getElementById('stat-total').textContent = data.chat?.total_messages || 0;
+    document.getElementById('stat-today').textContent = data.chat?.messages_today || 0;
+    document.getElementById('stat-conf').textContent = (data.chat?.avg_confidence * 100 || 0).toFixed(0) + '%';
+    document.getElementById('stat-rating').textContent = (data.feedback?.average_rating || 0).toFixed(1) + '/5';
+    
+    const intents = data.chat?.top_intents || [];
+    const maxCount = intents[0]?.count || 1;
+    document.getElementById('topIntentsTable').innerHTML = intents.length ? intents.map(i => `
+        <tr>
+            <td><span class="badge badge-blue">${i.intent}</span></td>
+            <td>${i.count}</td>
+            <td>
+                <div style="height:6px;background:rgba(255,255,255,0.08);border-radius:3px;width:150px">
+                    <div style="height:100%;background:var(--accent);border-radius:3px;width:${(i.count/maxCount*100)}%"></div>
+                </div>
+            </td>
+        </tr>
+    `).join('') : '<tr><td colspan="3" style="text-align:center;color:var(--text3);padding:20px">No data yet</td></tr>';
+}
+
+// FAQs
+async function loadFAQs() {
+    const category = document.getElementById('categoryFilter').value;
+    const url = '/admin/api/faqs' + (category ? `?category=${category}` : '');
+    const data = await api(url);
+    if (!data) return;
+    allFaqs = data.faqs || [];
+    renderFAQs(allFaqs);
+}
+
+function renderFAQs(faqs) {
+    document.getElementById('faqsTable').innerHTML = faqs.length ? faqs.map(f => `
+        <tr>
+            <td>${f.id}</td>
+            <td><span class="badge badge-blue">${f.category}</span></td>
+            <td>${escHtml(f.question)}</td>
+            <td style="color:var(--text3)">${escHtml(f.answer.substring(0,80))}...</td>
+            <td>
+                <button class="btn btn-outline btn-sm btn-icon" onclick='editFAQ(${JSON.stringify(f)})' title="Edit">✏️</button>
+                <button class="btn btn-danger btn-sm btn-icon" onclick="deleteFAQ(${f.id})" title="Delete">🗑</button>
+            </td>
+        </tr>
+    `).join('') : '<tr><td colspan="5" style="text-align:center;color:var(--text3);padding:20px">No FAQs found</td></tr>';
+}
+
+function searchFAQs() {
+    const q = document.getElementById('faqSearch').value.toLowerCase();
+    if (!q) { renderFAQs(allFaqs); return; }
+    const filtered = allFaqs.filter(f => 
+        f.question.toLowerCase().includes(q) || 
+        f.answer.toLowerCase().includes(q) ||
+        f.category.toLowerCase().includes(q)
+    );
+    renderFAQs(filtered);
+}
+
+function openAddFAQModal() {
+    document.getElementById('modalTitle').textContent = 'Add New FAQ';
+    document.getElementById('editFaqId').value = '';
+    document.getElementById('faqCategory').value = 'admissions';
+    document.getElementById('faqQuestion').value = '';
+    document.getElementById('faqAnswer').value = '';
+    document.getElementById('faqKeywords').value = '';
+    document.getElementById('faqModal').classList.add('open');
+}
+
+function editFAQ(faq) {
+    document.getElementById('modalTitle').textContent = 'Edit FAQ #' + faq.id;
+    document.getElementById('editFaqId').value = faq.id;
+    document.getElementById('faqCategory').value = faq.category;
+    document.getElementById('faqQuestion').value = faq.question;
+    document.getElementById('faqAnswer').value = faq.answer;
+    document.getElementById('faqKeywords').value = faq.keywords || '';
+    document.getElementById('faqModal').classList.add('open');
+}
+
+function closeFAQModal() {
+    document.getElementById('faqModal').classList.remove('open');
+}
+
+async function saveFAQ() {
+    const id = document.getElementById('editFaqId').value;
+    const body = {
+        category: document.getElementById('faqCategory').value,
+        question: document.getElementById('faqQuestion').value,
+        answer: document.getElementById('faqAnswer').value,
+        keywords: document.getElementById('faqKeywords').value
+    };
+    if (!body.question || !body.answer) { showAlert('Question and answer are required.', 'error'); return; }
+    
+    const url = id ? `/admin/api/faqs/${id}` : '/admin/api/faqs';
+    const method = id ? 'PUT' : 'POST';
+    const data = await api(url, { method, body: JSON.stringify(body) });
+    
+    if (data?.success || data?.id) {
+        closeFAQModal();
+        showAlert(id ? 'FAQ updated successfully!' : 'FAQ created successfully!');
+        loadFAQs();
+    } else {
+        showAlert(data?.error || 'Failed to save FAQ', 'error');
+    }
+}
+
+async function deleteFAQ(id) {
+    if (!confirm('Delete this FAQ? This action cannot be undone.')) return;
+    const data = await api(`/admin/api/faqs/${id}`, { method: 'DELETE' });
+    if (data?.success) { showAlert('FAQ deleted.'); loadFAQs(); }
+    else showAlert(data?.error || 'Delete failed', 'error');
+}
+
+// History
+async function loadHistory() {
+    const data = await api('/admin/api/chat-history?limit=50');
+    if (!data) return;
+    const rows = data.history || [];
+    document.getElementById('historyTable').innerHTML = rows.length ? rows.map(r => `
+        <tr>
+            <td style="white-space:nowrap;font-size:0.75rem">${new Date(r.timestamp).toLocaleString('en-IN',{hour12:false})}</td>
+            <td>${escHtml(r.user_message)}</td>
+            <td style="color:var(--text3)">${escHtml(r.bot_response.substring(0,100))}${r.bot_response.length>100?'...':''}</td>
+            <td><span class="badge ${r.intent==='unknown'?'badge-red':'badge-green'}">${r.intent||'-'}</span></td>
+            <td>${r.confidence ? (r.confidence*100).toFixed(0)+'%' : '-'}</td>
+        </tr>
+    `).join('') : '<tr><td colspan="5" style="text-align:center;color:var(--text3);padding:20px">No history yet</td></tr>';
+}
+
+// Model
+async function loadModelInfo() {
+    const data = await api('/admin/api/stats');
+    if (!data) return;
+    const m = data.model || {};
+    document.getElementById('modelInfo').innerHTML = `
+        <div><strong>Model Type:</strong> ${m.model_type || 'N/A'}</div>
+        <div><strong>Training Samples:</strong> ${m.training_samples || 0}</div>
+        <div><strong>Number of Intents:</strong> ${m.num_intents || 0}</div>
+        <div><strong>Training Accuracy:</strong> <span style="color:var(--green)">${typeof m.training_accuracy === 'number' ? m.training_accuracy+'%' : m.training_accuracy || 'N/A'}</span></div>
+        <div><strong>Training Time:</strong> ${m.training_time || 'N/A'}s</div>
+    `;
+}
+
+async function retrainModel() {
+    const btn = event.target;
+    const status = document.getElementById('retrainStatus');
+    btn.disabled = true; btn.textContent = '⏳ Retraining...';
+    status.textContent = '';
+    
+    const data = await api('/admin/api/retrain', { method: 'POST' });
+    btn.disabled = false; btn.textContent = '🔄 Retrain Model';
+    
+    if (data?.success) {
+        status.style.color = 'var(--green)';
+        status.textContent = `✓ Retraining complete! Accuracy: ${data.accuracy_info?.training_accuracy}%`;
+        showAlert('Model retrained successfully!');
+        loadModelInfo();
+    } else {
+        status.style.color = 'var(--red)';
+        status.textContent = '✗ Retraining failed';
+    }
+}
+
+function escHtml(str) {
+    return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+// Init
+loadStats();
+</script>
+</body>
+</html>
