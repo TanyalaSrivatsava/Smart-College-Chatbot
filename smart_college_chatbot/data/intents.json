@@ -1,0 +1,288 @@
+{
+  "intents": [
+    {
+      "tag": "greeting",
+      "patterns": [
+        "hi", "hello", "hey", "good morning", "good afternoon", "good evening",
+        "howdy", "what's up", "greetings", "namaste", "hey there", "hi there"
+      ],
+      "responses": [
+        "Hello! Welcome to SR University Chatbot. How can I help you today? 😊",
+        "Hi there! I'm your college assistant. Ask me anything about admissions, fees, courses, or more!",
+        "Hey! Welcome! I'm here to answer all your college-related queries. What would you like to know?"
+      ]
+    },
+    {
+      "tag": "goodbye",
+      "patterns": [
+        "bye", "goodbye", "see you", "see ya", "later", "take care",
+        "quit", "exit", "that's all", "nothing more", "thanks bye"
+      ],
+      "responses": [
+        "Goodbye! Best of luck with your studies! 👋",
+        "See you later! Feel free to come back anytime you have questions.",
+        "Take care! All the best! 🎓"
+      ]
+    },
+    {
+      "tag": "thanks",
+      "patterns": [
+        "thanks", "thank you", "thank you so much", "thanks a lot",
+        "appreciate it", "helpful", "that helped", "great", "awesome"
+      ],
+      "responses": [
+        "You're welcome! Happy to help! 😊",
+        "Glad I could assist! Is there anything else you'd like to know?",
+        "Anytime! Feel free to ask more questions."
+      ]
+    },
+    {
+      "tag": "admissions",
+      "patterns": [
+        "how to apply", "admission process", "how do I get admission",
+        "admission procedure", "how to take admission", "application process",
+        "eligibility for admission", "admission criteria", "admission requirements",
+        "how to join the college", "enrollment process", "registration process",
+        "apply for admission", "when does admission start", "admission open"
+      ],
+      "responses": [
+        "📋 **Admission Process at SR University:**\n\n1. **Online Application**: Visit sruriversity.ac.in and fill the application form\n2. **Eligibility**: 10+2 with minimum 60% marks in PCM/PCB/Commerce\n3. **Entrance Test**: EAMCET / JEE / SAT scores accepted\n4. **Document Verification**: Original certificates required\n5. **Fee Payment**: Pay admission fee online or at bank\n\n📅 Admissions open from April - July every year.\n\nFor more info, call: +91-870-2427777"
+      ]
+    },
+    {
+      "tag": "fees",
+      "patterns": [
+        "fee structure", "how much is the fee", "tuition fee", "course fee",
+        "annual fee", "semester fee", "total fees", "how much does it cost",
+        "what is the fee", "fee details", "fee payment", "hostel fee",
+        "mess fee", "lab fee", "fees per year", "fee for btech"
+      ],
+      "responses": [
+        "💰 **Fee Structure at SR University (2024-25):**\n\n**B.Tech Programs:**\n• CSE / IT / ECE / EEE: ₹85,000/year\n• Mechanical / Civil: ₹75,000/year\n\n**M.Tech Programs:** ₹65,000/year\n**MBA:** ₹70,000/year\n**MCA:** ₹60,000/year\n\n**Additional Fees:**\n• Hostel: ₹55,000/year (AC: ₹70,000)\n• Mess: ₹35,000/year\n• Transport: ₹15,000-25,000/year\n\n⚠️ *Fees may vary. Scholarships available for merit students.*\n\nContact accounts office: accounts@sruniversity.ac.in"
+      ]
+    },
+    {
+      "tag": "courses",
+      "patterns": [
+        "what courses are offered", "available programs", "list of courses",
+        "what programs do you offer", "departments", "branches available",
+        "which courses", "what can I study", "courses list", "stream options",
+        "engineering branches", "science courses", "arts courses", "mba",
+        "mtech", "btech courses", "specializations"
+      ],
+      "responses": [
+        "🎓 **Courses Offered at SR University:**\n\n**Undergraduate (B.Tech - 4 years):**\n• Computer Science & Engineering (CSE)\n• CSE with Data Science\n• CSE with AI & ML\n• Information Technology (IT)\n• Electronics & Communication (ECE)\n• Electrical & Electronics (EEE)\n• Mechanical Engineering\n• Civil Engineering\n\n**Postgraduate:**\n• M.Tech (CSE, ECE, EEE, ME)\n• MBA (Marketing, Finance, HR)\n• MCA\n• M.Sc (Data Science, Physics)\n\n**Ph.D Programs** available in most departments.\n\nTotal intake: ~3000 students/year"
+      ]
+    },
+    {
+      "tag": "exams",
+      "patterns": [
+        "exam schedule", "exam timetable", "when are exams", "examination dates",
+        "mid term exam", "end term exam", "semester exams", "internal exams",
+        "external exams", "exam pattern", "how many exams", "university exams",
+        "practical exams", "lab exams", "online exams", "exam hall ticket"
+      ],
+      "responses": [
+        "📅 **Exam Schedule (2024-25):**\n\n**Mid-Term Exams:**\n• I Mid: September 2nd week\n• II Mid: November 2nd week\n\n**End Semester Exams:**\n• Odd Semester: December last week - January\n• Even Semester: May - June\n\n**Exam Pattern:**\n• Internal Marks: 30 (Mids + Assignments + Attendance)\n• External Marks: 70 (University Exam)\n• Total: 100 marks per subject\n• Passing: 40% in each (External: 28/70)\n\n**Hall Tickets**: Available 1 week before exams on university portal.\n\n🔗 Check: erp.sruniversity.ac.in for exact dates"
+      ]
+    },
+    {
+      "tag": "faculty",
+      "patterns": [
+        "faculty details", "professors list", "who are the teachers",
+        "faculty information", "department faculty", "how many professors",
+        "hod details", "head of department", "faculty qualifications",
+        "visiting faculty", "cse faculty", "ece faculty", "faculty contact",
+        "professor contact", "teaching staff", "phd faculty"
+      ],
+      "responses": [
+        "👨‍🏫 **Faculty Information:**\n\n**CSE & Data Science Department:**\n• Dr. K. Ramaiah (HOD) - Ph.D IIT Bombay\n• Dr. S. Priya - AI & ML Specialist\n• Mr. T. Venkat - Full Stack & Cloud\n• Ms. R. Divya - Data Science & Python\n\n**Faculty Highlights:**\n• 150+ qualified faculty members\n• 40% faculty with Ph.D degrees\n• Faculty from IITs, NITs & top universities\n• Industry experience: 5-20 years avg\n\n**Faculty Directory:**\nVisit: sruniversity.ac.in/faculty\n\n📧 Faculty email format: firstname.lastname@sruniversity.ac.in\n\n*For specific faculty contact, visit your department office.*"
+      ]
+    },
+    {
+      "tag": "placements",
+      "patterns": [
+        "placement details", "placement record", "companies that visit",
+        "job placement", "campus placements", "highest package", "average package",
+        "placement statistics", "who got placed", "placement cell",
+        "internship", "job offers", "top recruiters", "placement process",
+        "how many students placed", "placement percentage", "salary package"
+      ],
+      "responses": [
+        "💼 **Placement Record at SR University:**\n\n**2023-24 Highlights:**\n• Students Placed: 850+ (88% placement rate)\n• Highest Package: ₹42 LPA (Microsoft)\n• Average Package: ₹6.8 LPA\n• Median Package: ₹5.2 LPA\n\n**Top Recruiters:**\nTCS, Infosys, Wipro, Cognizant, HCL,\nAmazon, Microsoft, Deloitte, Accenture,\nCapgemini, L&T Infotech, Oracle, IBM\n\n**Internship Stats:**\n• 600+ internship offers per year\n• Avg stipend: ₹8,000-25,000/month\n\n📌 Training & Placement Office:\nEmail: placements@sruniversity.ac.in\nPhone: +91-870-2427788"
+      ]
+    },
+    {
+      "tag": "hostel",
+      "patterns": [
+        "hostel details", "hostel facility", "hostel accommodation",
+        "is hostel available", "hostel fees", "boys hostel", "girls hostel",
+        "hostel rooms", "hostel food", "hostel wifi", "hostel rules",
+        "accommodation", "can I stay in campus", "on campus living",
+        "hostel warden", "hostel contact"
+      ],
+      "responses": [
+        "🏠 **Hostel Facilities at SR University:**\n\n**Available Hostels:**\n• 4 Boys Hostels (capacity: 1200)\n• 2 Girls Hostels (capacity: 600)\n\n**Room Types:**\n• 3-sharing: ₹45,000/year\n• 2-sharing: ₹55,000/year\n• AC 2-sharing: ₹70,000/year\n\n**Facilities Included:**\n✅ 24/7 Wi-Fi (50 Mbps)\n✅ RO Drinking Water\n✅ Laundry Service\n✅ Gym & Recreation Room\n✅ CCTV Surveillance\n✅ Power Backup\n✅ Mess (veg & non-veg)\n\n📞 Hostel Office: +91-870-2427799\n📧 hostel@sruniversity.ac.in"
+      ]
+    },
+    {
+      "tag": "library",
+      "patterns": [
+        "library", "library timings", "library books", "digital library",
+        "e-library", "how many books", "library facilities", "reading room",
+        "borrow books", "library membership", "online resources", "journals"
+      ],
+      "responses": [
+        "📚 **Central Library - SR University:**\n\n**Timings:** 8:00 AM - 9:00 PM (Mon-Sat)\n🕐 Reading Room: Open 24/7\n\n**Collection:**\n• 75,000+ print books\n• 500+ national/international journals\n• 50,000+ e-books (IEEE, Elsevier, Springer)\n• Previous years' question papers\n\n**Digital Resources:**\n• NPTEL video lectures\n• DELNET library network\n• Shodhganga (thesis repository)\n• IEEE Xplore access\n\n**Issue Rules:**\n• UG Students: 3 books for 14 days\n• PG Students: 5 books for 21 days\n• Fine: ₹2/day per book after due date"
+      ]
+    },
+    {
+      "tag": "sports",
+      "patterns": [
+        "sports facilities", "sports available", "cricket", "football",
+        "basketball", "gym", "fitness center", "sports events", "tournaments",
+        "outdoor games", "indoor games", "sports ground", "swimming pool"
+      ],
+      "responses": [
+        "🏅 **Sports & Facilities at SR University:**\n\n**Outdoor Sports:**\n• Cricket ground (with floodlights)\n• Football & Hockey ground\n• Basketball & Volleyball courts\n• Athletic track (400m)\n• Tennis courts (2)\n\n**Indoor Sports:**\n• Badminton courts (4)\n• Table Tennis\n• Chess & Carrom room\n• Gymnasium (fully equipped)\n\n**Annual Events:**\n• Intra-college sports tournament: Jan-Feb\n• Inter-college sports meet: March\n• Annual Sports Day: April\n\n🏆 SR University won state-level cricket championship 2023!"
+      ]
+    },
+    {
+      "tag": "location",
+      "patterns": [
+        "where is the college", "college address", "location", "how to reach",
+        "distance from", "nearest railway station", "bus stop", "directions",
+        "college map", "campus location", "warangal", "address"
+      ],
+      "responses": [
+        "📍 **SR University Location:**\n\n**Address:**\nSR University, Ananthsagar, Hasanparthy,\nWarangal - 506 371, Telangana, India\n\n**How to Reach:**\n🚂 Railway: Warangal Railway Station (12 km)\n🚌 Bus: TSRTC buses available from Warangal\n✈️ Airport: Rajiv Gandhi Intl Airport, Hyderabad (150 km)\n\n**From Hyderabad:**\n• By Road: 150 km via NH-163 (2.5 hrs)\n• By Train: 2 hrs from Secunderabad\n• By Bus: TSRTC Express buses every hour\n\n🗺️ Google Maps: bit.ly/sruniversity-map\n\n**Campus Area:** 100+ acres"
+      ]
+    },
+    {
+      "tag": "scholarships",
+      "patterns": [
+        "scholarships", "financial aid", "fee waiver", "merit scholarship",
+        "government scholarship", "ebc scholarship", "sc st scholarship",
+        "minority scholarship", "how to get scholarship", "scholarship eligibility"
+      ],
+      "responses": [
+        "🏆 **Scholarship Information:**\n\n**Government Scholarships:**\n• TS ePass (SC/ST/BC/EBC/Minority)\n• PM Scholarship\n• National Merit Scholarship\n\n**University Scholarships:**\n• Management Quota Merit: 50-100% fee waiver\n• Rank 1 in University Exams: Full fee waiver\n• Sports Excellence: Up to 75% waiver\n• Sibling Discount: 10% on 2nd child\n\n**Eligibility for University Scholarship:**\n• EAMCET rank < 5000: 50% waiver\n• EAMCET rank < 1000: 75% waiver\n• 10+2 aggregate > 95%: Special consideration\n\n📞 Scholarship Office: +91-870-2427760\n📧 scholarships@sruniversity.ac.in"
+      ]
+    },
+    {
+      "tag": "transport",
+      "patterns": [
+        "college bus", "transport facility", "bus routes", "bus timings",
+        "how to come to college", "bus pass", "transport fee",
+        "college transport", "bus from warangal", "bus from hyderabad"
+      ],
+      "responses": [
+        "🚌 **Transport Facility:**\n\n**Bus Routes Available:**\n• Warangal City: 8 routes\n• Kazipet, Hanamkonda: 4 routes\n• Karimnagar: 2 routes\n• Hyderabad (Fri-Mon only): 2 routes\n\n**Bus Timings:**\n• Morning: 7:30 AM - 8:30 AM\n• Evening: 5:00 PM - 6:30 PM\n\n**Transport Fee:** ₹12,000-22,000/year (based on distance)\n\n**Bus Pass:** Available at transport office (Admin Block, Ground Floor)\n\n📱 Track buses: SR Transport App\n📞 Transport Office: +91-870-2427755"
+      ]
+    },
+    {
+      "tag": "contact",
+      "patterns": [
+        "contact details", "phone number", "email address", "contact information",
+        "how to contact", "college phone", "college email", "who to contact",
+        "helpline", "enquiry", "phone of college"
+      ],
+      "responses": [
+        "📞 **Contact Information - SR University:**\n\n**Main Office:** +91-870-2427777\n**Admissions:** +91-870-2427778\n**Exam Cell:** +91-870-2427780\n**Placements:** +91-870-2427788\n**Hostel:** +91-870-2427799\n\n**Email Addresses:**\n• General: info@sruniversity.ac.in\n• Admissions: admissions@sruniversity.ac.in\n• Placements: placements@sruniversity.ac.in\n• Exams: exams@sruniversity.ac.in\n\n**Working Hours:**\nMon-Fri: 9:00 AM - 5:00 PM\nSat: 9:00 AM - 1:00 PM\n\n🌐 Website: www.sruniversity.ac.in"
+      ]
+    },
+    {
+      "tag": "clubs",
+      "patterns": [
+        "clubs and activities", "student clubs", "extracurricular", "cultural events",
+        "technical clubs", "student activities", "fest", "techfest", "cultural fest",
+        "events", "competitions", "hackathon", "coding club", "dance club"
+      ],
+      "responses": [
+        "🎭 **Student Clubs & Activities:**\n\n**Technical Clubs:**\n• CodeSR (Competitive Programming)\n• AI/ML Club\n• Robotics Club\n• Cybersecurity Club\n• Web Dev Club\n\n**Cultural Clubs:**\n• Drama & Theatre Club\n• Music Club (Instrumental + Vocal)\n• Dance Club (Classical + Western)\n• Photography & Filmmaking\n• Literary Club\n\n**Annual Events:**\n• Techno-Vista (Techfest): February\n• Utsav (Cultural Fest): October\n• Startup Week: November\n• Hackathon (48hrs): January\n\n🏆 Register at: clubs.sruniversity.ac.in"
+      ]
+    },
+    {
+      "tag": "naac",
+      "patterns": [
+        "naac grade", "accreditation", "ranking", "nirf ranking", "college rating",
+        "nba accreditation", "ugc approved", "aicte approved", "autonomous",
+        "university recognition", "affiliation"
+      ],
+      "responses": [
+        "⭐ **Accreditation & Rankings:**\n\n**Accreditation:**\n• NAAC Grade: A+ (3.51/4.00)\n• NBA Accredited: CSE, ECE, EEE, ME\n• AICTE Approved: All Programs\n• UGC Recognized: Yes\n\n**Rankings:**\n• NIRF Ranking: 101-150 (Engineering)\n• Outlook Education Ranking: Top 50 in South India\n• Times Engineering Rankings: Top 75\n\n**Recognition:**\n• Autonomous University since 2018\n• Research University status\n• DSIR recognized R&D center\n\n✅ All degrees are nationally recognized and eligible for government jobs."
+      ]
+    },
+    {
+      "tag": "wifi",
+      "patterns": [
+        "wifi", "internet", "network", "campus wifi", "wifi password",
+        "internet speed", "wifi in hostel", "broadband", "connectivity"
+      ],
+      "responses": [
+        "📶 **Internet & Wi-Fi Facilities:**\n\n• **Campus Wi-Fi**: 1 Gbps fiber optic\n• **Coverage**: All buildings, hostels, grounds\n• **Student Access**: Free (login with student ID)\n• **Speed per student**: Up to 50 Mbps\n\n**How to Connect:**\n1. Connect to 'SR-Campus' network\n2. Open browser → Login page appears\n3. Enter student ID & password\n4. Enjoy unlimited internet!\n\n📱 IT Support: itsupport@sruniversity.ac.in\nPhone: +91-870-2427770"
+      ]
+    },
+    {
+      "tag": "labs",
+      "patterns": [
+        "labs", "computer lab", "laboratory", "lab facilities", "software available",
+        "lab timings", "programming lab", "networking lab", "hardware lab"
+      ],
+      "responses": [
+        "🖥️ **Laboratory Facilities:**\n\n**CSE Labs (10 total):**\n• Programming Lab: 60 systems (Core i7)\n• Data Science Lab: 40 systems (GPU enabled)\n• Networking Lab: Cisco equipment\n• AI/ML Lab: NVIDIA GPU workstations\n\n**Software Available:**\n• Microsoft Office 365, Visual Studio\n• Python, Java, C++, MATLAB\n• AutoCAD, SolidWorks\n• Oracle, MySQL, MongoDB\n• Tableau, Power BI, R Studio\n\n**Lab Timings:**\nMon-Sat: 8:00 AM - 8:00 PM\nSunday: 10:00 AM - 4:00 PM (project work)"
+      ]
+    },
+    {
+      "tag": "attendance",
+      "patterns": [
+        "attendance requirement", "attendance percentage", "minimum attendance",
+        "attendance rules", "how much attendance needed", "attendance policy",
+        "condonation", "shortage of attendance", "attendance portal"
+      ],
+      "responses": [
+        "📊 **Attendance Policy:**\n\n**Minimum Required:** 75%\n\n**Condonation:**\n• 65-75%: Medical condonation (with doctor certificate)\n• Below 65%: Not eligible for exams\n\n**Calculation:**\nAttendance % = (Classes Attended / Total Classes) × 100\n\n**Tracking:**\n• Updated daily on ERP portal\n• SMS/Email alerts for parents below 80%\n• Weekly reports on mobile app\n\n**Check Attendance:**\n🌐 erp.sruniversity.ac.in\n📱 SR University Student App\n\n⚠️ *Attendance is strictly monitored. Plan leaves carefully.*"
+      ]
+    },
+    {
+      "tag": "canteen",
+      "patterns": [
+        "canteen", "food", "cafeteria", "mess", "food available", "restaurant",
+        "dining", "food quality", "meal", "breakfast lunch dinner", "veg non veg"
+      ],
+      "responses": [
+        "🍽️ **Food & Canteen Facilities:**\n\n**Main Canteen:**\n• Timings: 7:30 AM - 9:00 PM\n• Veg & Non-Veg options\n• South Indian, North Indian, Chinese\n• Price range: ₹20-80 per item\n\n**Hostel Mess:**\n• Breakfast: 7:00-8:30 AM\n• Lunch: 12:00-2:00 PM\n• Snacks: 4:00-5:00 PM\n• Dinner: 7:30-9:00 PM\n• Monthly fee: ₹2,800-3,200\n\n**Special:**\n• Tea/Coffee stalls across campus\n• Juice corner near library\n• Fast food outlet (Domino's kiosk)"
+      ]
+    },
+    {
+      "tag": "anti_ragging",
+      "patterns": [
+        "ragging", "anti ragging", "complaint", "harassment", "safety",
+        "student safety", "how to complain", "misconduct", "bullying"
+      ],
+      "responses": [
+        "🛡️ **Anti-Ragging & Safety Policy:**\n\n**Zero Tolerance Policy**: SR University strictly prohibits ragging.\n\n**Report Ragging:**\n• Campus Helpline: 1800-180-5522 (Toll Free 24/7)\n• Anti-Ragging Committee: +91-870-2427785\n• Email: antiragging@sruniversity.ac.in\n• UGC Helpline: 1800-180-0161\n\n**Strict Action:**\n• Immediate suspension pending inquiry\n• FIR filed with police if required\n• Expulsion for proven cases\n\n**Support:**\n• Student Grievance Cell available\n• Counselors available 24/7 in hostel\n\n✅ All new students are briefed on day 1. You are safe here."
+      ]
+    },
+    {
+      "tag": "telugu_greeting",
+      "patterns": [
+        "నమస్కారం", "హలో", "నమస్తే", "బాగున్నారా", "ఏంటి",
+        "namaskaram", "bagunnara", "ela unnav"
+      ],
+      "responses": [
+        "నమస్కారం! 🙏 SR University Chatbot కి స్వాగతం!\nమీకు ఏమి సహాయం కావాలి?\n\n(Hello! Welcome to SR University Chatbot! How can I help you?)"
+      ]
+    },
+    {
+      "tag": "telugu_fees",
+      "patterns": [
+        "ఫీజు ఎంత", "చదువు ఖర్చు", "annual fee telugu",
+        "fee enta", "fee entha", "chadvuku kharchu"
+      ],
+      "responses": [
+        "💰 **ఫీజు వివరాలు (Fee Details):**\n\nB.Tech (CSE/IT/ECE): ₹85,000/సంవత్సరం\nహాస్టల్ ఫీజు: ₹55,000/సంవత్సరం\nమెస్ ఫీజు: ₹35,000/సంవత్సరం\n\nస్కాలర్‌షిప్‌లు అందుబాటులో ఉన్నాయి!\n(Scholarships are available!)\n\nమరిన్ని వివరాలకు: +91-870-2427778"
+      ]
+    }
+  ]
+}
